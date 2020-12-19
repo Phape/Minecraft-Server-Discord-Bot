@@ -1,0 +1,19 @@
+# sudo cp mc-discord-bot.service /etc/systemd/system/mc-discord-bot.service
+# test with: sudo service mc-discord-bot status/start/stop/restart
+# Use system logs for debugging: sudo tail -f /var/log/syslog
+# systemd-analyze verify mc-discord-bot.service
+
+[Unit]
+Description=Minecraft-Server-Discord-Bot
+StartLimitBurst=5
+StartLimitIntervalSec=1min
+
+[Service]
+Type=simple
+ExecStart=/home/pi/Minecraft-Server-Discord-Bot/run_mc_discord_bot.sh
+WorkingDirectory=/home/pi/Minecraft-Server-Discord-Bot/
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
