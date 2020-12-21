@@ -12,17 +12,7 @@ allowed_phrases = [
     # server starting
     '\[\d\d:\d\d:\d*]\s\[Server\sthread/INFO\]:\sStarting\sminecraft\sserver\sversion.*',
     # server startup Done
-    '\[\d\d:\d\d:\d*]\s\[Server\sthread/INFO\]:\sDone(\d*.\d*)!\sFor\shelp,\stype\s"help".*',
+    '\[\d\d:\d\d:\d*]\s\[Server\sthread/INFO\]:\sDone\s(\d*.\d*)!\sFor\shelp,\stype\s"help".*',
 ]
 
 allowed_phrases_combined = "(" + ")|(".join(allowed_phrases) + ")"
-
-# this file was originally a blacklist:
-
-excluded_phrases = [
-    '\[\d\d:\d\d:\d*]\s\[Server\sthread/WARN\]:\sCan\'t\skeep\sup!\sIs\sthe\sserver\soverloaded\?',
-    '\[\d\d:\d\d:\d*]\s\[Server\sthread/INFO\]:\s.*lost\sconnection:\sDisconnected',
-    '\[\d\d:\d\d:\d*]\s\[Server\sthread/INFO\]:\s.*logged\sin\swith\sentity\sid\s\d*\sat.*',
-    '\[\d\d:\d\d:\d*]\s\[User\sAuthenticator\s#\d*/INFO\]:\sUUID\sof\splayer\s.*is.*'
-]
-excluded_phrases_combined = "(" + ")|(".join(excluded_phrases) + ")"
