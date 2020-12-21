@@ -2,19 +2,24 @@ import asyncio
 import discord
 import os
 import re
+import logging
 from allowed_phrases import allowed_phrases_combined
 from discord.ext import commands, tasks
 from itertools import cycle
 from pygtail import Pygtail
+import getpass
 
+logging.basicConfig(level=logging.INFO)
 client = discord.Client()
 # bot = commands.Bot(command_prefix='$')
 status = cycle(['Made by Phape', 'use $ to get my attention'])
+# logging.info("Current User: " + getpass.getuser())
 
 
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    logging.info('MC-Discord-Bot logged in as {0.user}'.format(client))
+    os.system('screen -S minecraft -X stuff \'tellraw @a {"text":"Discord Bot Connected", "color":"dark_purple"}' + '^M\'')
     change_status.start()
     display_minecraft_logs.start()
 
@@ -25,8 +30,7 @@ async def on_message(message):
         return
 
     if message.channel.id == 789963688035352585:  # mc-chat
-        os.system(
-            'screen -S minecraft -X stuff \'tellraw @a {"text":"<' + message.author.name + '> ' + message.content + '", "color":"dark_purple"}' + '^M\'')
+        os.system('screen -S minecraft -X stuff \'tellraw @a {"text":"<' + message.author.name + '> ' + message.content + '", "color":"dark_purple"}' + '^M\'')
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
