@@ -10,11 +10,11 @@ StartLimitBurst=5
 StartLimitIntervalSec=1min
 
 [Service]
-Type=simple
-ExecStart=./run_mc_discord_bot.sh
-WorkingDirectory=/home/pi/Minecraft-Server-Discord-Bot/
+User=pi
+ExecStart=/home/pi/Minecraft-Server-Discord-Bot/run_mc_discord_bot.sh
+WorkingDirectory=/home/pi/Minecraft-Server-Discord-Bot
 Restart=on-failure
-RestartSec=10
+RestartSec=3s
 
 [Install]
 WantedBy=multi-user.target
