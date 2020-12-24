@@ -49,7 +49,7 @@ async def msg_mc_chat_channel(message):
     await channel.send(message)
 
 
-@tasks.loop(seconds=5)
+@tasks.loop(seconds=3)
 async def display_minecraft_logs():
     for line in Pygtail("/home/pi/minecraft-server/logs/latest.log", read_from_end=True):
         if re.match(allowed_phrases_combined, line):
@@ -59,7 +59,7 @@ async def display_minecraft_logs():
 
 
 def format_log_to_chat(log_line):
-    chat = re.sub('\[\d\d:\d\d:\d*]\s\[Server\sthread/INFO\]:', '', log_line)
+    chat = re.sub('\[\d\d:\d\d:\d*]\s\[Server\sthread\/INFO\]:', '', log_line)
     return chat
 
 
